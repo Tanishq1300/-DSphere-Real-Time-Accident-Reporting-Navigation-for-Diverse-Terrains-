@@ -1,0 +1,1956 @@
+import kwargs as kwargs
+from kivy.app import App
+from kivy.lang import Builder
+from kivy.properties import StringProperty, BooleanProperty
+from kivy.uix.anchorlayout import AnchorLayout
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.relativelayout import RelativeLayout
+from kivy.uix.scrollview import ScrollView
+from kivy.uix.widget import Widget
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.core.window import Window
+#from kivy_garden.mapview import MapView, MapMarker
+
+Builder.load_string("""
+
+<Settings>:
+    name: "setting"
+    RelativeLayout:
+        Button:
+            text: 'Account'
+            color: 0,0,0,1
+            background_normal: ''
+            background_color: (0,1,0,1)
+            font_size: 35
+            on_release:
+                app.root.current = "acc"
+                root.manager.transition.direction = "up"
+            size_hint: .3,.12
+            pos_hint: {"x":0,"top":1}
+            
+            
+              
+                
+        Label:  #1
+            size_hint: 1,.14
+            pos_hint: {"center_x": .5,"top":.1494}
+            text: "Storage and Data"
+            color: 0,0,0,1
+            background_color: (1,0,0.4,1)
+            canvas.before:
+                Color:
+                    rgba: 1,1,1,1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        Label:  #2
+            size_hint: 1,.14
+            pos_hint: {"center_x": .5,"top":.858}
+            text: "Languages"
+            color: 0,0,0,1
+            background_color: (1,0.3,0.4,1)
+            canvas.before:
+                Color:
+                    rgba: 1,1,1,1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        Label:  #3
+            size_hint: 1,.14
+            pos_hint: {"center_x": .5,"top":.7164}
+            color: 0,0,0,1
+            text: "Security and Location"
+            background_color: (0.2376,0.5,0.4,1)
+            canvas.before:
+                Color:
+                    rgba: 1,1,1,1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        Label:  #4
+            size_hint: 1,.14
+            pos_hint: {"center_x": .5,"top":.5748}
+            color: 0,0,0,1
+            text: "Edit Username"
+            background_color: (0.6,0.6,0.4,1)
+            canvas.before:
+                Color:
+                    rgba: 1,1,1,1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        Label:  #5
+            size_hint: 1,.14
+            pos_hint: {"center_x": .5,"top":.4332}
+            text: "Improve Location Accuracy"
+            color: 0,0,0,1
+            background_color: (1,0.3,0.4,1)
+            canvas.before:
+                Color:
+                    rgba: 1,1,1,1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        Label:  #6
+            size_hint: 1,.14
+            pos_hint: {"center_x": .5,"top":.291}
+            text: "Password Change"
+            color: 0,0,0,1
+            background_color: (0.90232648,0.3278,0.4,1)
+            canvas.before:
+                Color:
+                    rgba: 1,1,1,1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        
+<Login>:
+    name: "login"
+    Image:
+        source: "LOGIN.jpeg"
+        size_hint: 1,1
+        allow_stretch: True
+        keep_ratio: False
+    RelativeLayout:
+       
+        Button:
+            text: "Submit"
+            background_normal: ''
+            background_color: 1,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 1, 0, 0, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            on_release:
+                app.root.current = "guide1"
+                root.manager.transition.direction = "right"
+            size_hint: .35,.072
+            pos_hint: {"center_x": 0.5, "center_y": 0.23}
+        TextInput:
+            hint_text: "Enter Username "
+            pos_hint: {"center_x":0.5,"top":0.45}
+            size_hint: .75,.065
+            halign: 'center'
+            multiline: False
+        TextInput:
+            hint_text: "Enter Password "
+            pos_hint: {"center_x":0.5,"center_y":0.34}
+            size_hint: .75,.065
+            halign: 'center'
+            password: True
+            multiline: False
+            
+
+<AccountDet>
+    name:"account"
+    canvas:
+        Line:
+            points: (self.width/2,self.height*0.88, self.width/2,self.height*0.28)
+        Line:
+            points: (0,self.height*0.88,self.width,self.height*0.88)
+        Line:
+            points: (self.width,self.height*0.88,self.width,self.height*0.28)
+        Line:
+            points: (self.width*0.1,self.height*0.88,self.width*0.1,self.height*0.28)
+        Line:
+            points: (0,self.height*0.78,self.width,self.height*0.78)
+        Line:
+            points: (0,self.height*0.68,self.width,self.height*0.68)
+        Line:
+            points: (0,self.height*0.58,self.width,self.height*0.58)
+        Line:
+            points: (0,self.height*0.48,self.width,self.height*0.48)
+        Line:
+            points: (0,self.height*0.38,self.width,self.height*0.38)
+        Line:
+            points: (0,self.height*0.28,self.width,self.height*0.28)
+        
+
+    RelativeLayout:
+        Button:
+            text: 'Go Back to Account >'
+            on_release:
+                app.root.current = "acc"
+                root.manager.transition.direction = "up"
+            background_normal: ''
+            background_color: 1,0,0,1 
+            size_hint: .3,.12
+            pos_hint: {"x":0,"top":1}
+        Label:
+            text: "1)"
+            size_hint: .02,.2
+            font_size: 50
+            pos_hint: {"x":0.05,"top":0.93}
+        Label: #1
+            text: "Name"
+            size_hint: .2,.2
+            font_size: 50
+            pos_hint: {"x":0.2,"top":0.93}
+        Label:  #1 Ans
+            text: "Sample Name"
+            font_size: 50
+            size_hint: .2,.2
+            pos_hint: {"x":0.65,"top":0.93}
+        Label:
+            text: "2)"
+            size_hint: .02,.2
+            font_size: 50
+            pos_hint: {"x":0.05,"top":0.83}
+        Label:  #2
+            text: "Phone Number"
+            font_size: 50
+            size_hint: .2,.2
+            pos_hint: {"x":0.2,"top":0.83}
+        Label:  #2 Ans
+            text: "9878937291"
+            font_size: 50
+            size_hint: .2,.2
+            pos_hint: {"x":0.65,"top":0.83}
+        Label:
+            text: "3)"
+            size_hint: .02,.2
+            font_size: 50
+            pos_hint: {"x":0.05,"top":0.73}
+        Label:  #3
+            text: "Email ID"
+            size_hint: .2,.2
+            font_size: 50
+            pos_hint: {"x":0.2,"top":0.73}
+        Label:  #3 Ans
+            text: "Sample@yahoo.com"
+            size_hint: .2,.2
+            font_size: 50
+            pos_hint: {"x":0.65,"top":0.73}
+        Label:
+            text: "4)"
+            size_hint: .02,.2
+            font_size: 50
+            pos_hint: {"x":0.05,"top":0.63}
+        Label:  #4
+            text: "Emergency Contact"
+            size_hint: .2,.2
+            font_size: 50
+            pos_hint: {"x":0.2,"top":0.63}
+        Label: #4 ans
+            text: "9/11"
+            size_hint: .2,.2
+            font_size: 50
+            pos_hint: {"x":0.65,"top":0.63}
+        Label:
+            text: "5)"
+            size_hint: .02,.2
+            font_size: 50
+            pos_hint: {"x":0.05,"top":0.53}
+        Label: #5
+            text: "Aadhaar Card"
+            size_hint: .2,.2
+            font_size: 50
+            pos_hint: {"x":0.2,"top":0.53}
+        Label: #5 ans
+            text: "3243 8239 3298"
+            size_hint: .2,.2
+            font_size: 50
+            pos_hint: {"x":0.65,"top":0.53}
+        Label:
+            text: "6)"
+            size_hint: .02,.2
+            font_size: 50
+            pos_hint: {"x":0.05,"top":0.43}
+        Label: #6
+            text: "Date of Birth"
+            size_hint: .2,.2
+            font_size: 50
+            pos_hint: {"x":0.2,"top":0.43}
+        Label: #6 ans
+            text: "11 September 2002"
+            size_hint: .2,.2
+            font_size: 50
+            pos_hint: {"x":0.65,"top":0.43}
+
+
+
+
+<Terms>:
+    name:"terms"
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_y: 1
+        ScrollView:
+            GridLayout:
+                cols: 1
+                spacing: 10
+                padding: 10
+                size_hint_y: None
+                height: self.minimum_height
+                Label:
+                    text: "*DSPHERE*"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: "*USER TERMS AND CONDITIONS*"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: "1. *INTRODUCTION* "
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: "This page sets out the terms and conditions (the “User Terms”) and the privacy policy (the “Privacy Policy”) which govern the use of the web platform and “DSphere” application for mobile and handheld devices (collectively hereinafter called as the “Platform”), each of which you shall be deemed to have read, understood and consented to of your free will."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: "1.2 The Platform is owned and operated by Progress Pacers "
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: "(hereinafter referred to as “we”, “us”,) The Group is of students of Bennett University (Plot Nos 8, 11, TechZone 2, Greater Noida, Uttar Pradesh 201310)"
+                    size_hint_y: None
+                    text: "3.2 If you are a minor i.e. under the age of 18 (eighteen) years but at least 13 (thirteen) years of age or above you may use the Platform either under the supervision of ]"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: "(i) authorized representatives of the educational institution you are associated with and which has agreed to be bound by the User Terms and Privacy Policy; or"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: "(ii) your legal guardian."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: "3.3 By using the Platform you warrant and confirm that you have the legal right, authority and capacity to enter into and be bound by the User Terms and the Privacy Policy."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: "6. *USER COVENANTS* "
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: "By using any of the Services you agree and acknowledge that:"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: "(v) attempting to decipher, decompile, disassemble or reverse engineer any part of the Platform;"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: "(vi) copying or duplicating in any manner any of the information available on the Platform; and"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: "(vii) framing or hotlinking or deep linking any contents from the Platform."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: "7. *THIRD PARTY SERVICES AND INFORMATION* "
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: "If you choose to avail the Third Party Services and you are required to make any payments to the Third Party Providers for such Third Party Services through the Platform, "
+
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                Label:
+                    text: "you agree and acknowledge that the payment terms of the Third Party Providers will be applicable to such transactions. While, the Group may provide or arrange for technology"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: " infrastructure to carry out transactions for Third Party Services through the Platform, the Group shall not be responsible to you for any of the Third Party Services."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: "8. *CONTACTING US*"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+
+                Label:
+                    text: "If there are any questions regarding the Privacy Policy you may contact us at [1800 345 6788]."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                # ... (continue adding more labels with text as needed)
+    Button:
+        text: 'Go Back'
+        on_release:
+            app.root.current = 'acc'
+            root.manager.transition.direction = 'right'
+        size_hint: 0.2,.1
+        pos_hint: {"center_x":0.8,"y":.03}
+        
+<Guide1>:
+    name:"guide1"
+    Image:
+        source: 'yoho.jpeg'
+        pos_hint: {"center_x":0.5,"center_y":0.5}
+        size_hint: 0.8,0.8
+        allow_stretch: True
+        keep_ratio: False    
+    Button:
+        text: "Skip"
+        size_hint: .1,.05
+        pos_hint: {"x":0.2,"y":0.025}
+        background_color: 0,1,0,1
+        canvas.before:
+            Color:
+                rgba: 0, 1, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "up"
+    Button:
+        text: "Next"
+        size_hint: .1,.05
+        pos_hint: {"x":0.7,"y":0.025}
+        background_color: 0,1,0,1
+        canvas.before:
+            Color:
+                rgba: 0, 1, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        on_release:
+            app.root.current = "guide2"
+            root.manager.transition.direction = "left"
+<Guide2>:
+    name:"guide2"
+    Image:
+        source: '1guide.jpeg'
+        pos_hint: {"center_x":0.5,"center_y":0.5}
+        size_hint: 0.8,0.8
+        allow_stretch: True
+        keep_ratio: False    
+    Button:
+        text: "Skip"
+        size_hint: .1,.05
+        pos_hint: {"x":0.2,"y":0.025}
+        background_color: 0,1,0,1
+        canvas.before:
+            Color:
+                rgba: 0, 1, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "up"
+    Button:
+        text: "Next"
+        size_hint: .1,.05
+        pos_hint: {"x":0.7,"y":0.025}
+        background_color: 0,1,0,1
+        canvas.before:
+            Color:
+                rgba: 0, 1, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        on_release:
+            app.root.current = "guide3"
+            root.manager.transition.direction = "left"
+<Guide3>:
+    name:"guide3"
+    
+    Image:
+        source: '2guide.jpeg'
+        pos_hint: {"center_x":0.5,"center_y":0.5}
+        size_hint: 0.8,0.8
+        allow_stretch: True
+        keep_ratio: False    
+    Button:
+        text: "Skip"
+        size_hint: .1,.05
+        pos_hint: {"x":0.2,"y":0.025}
+        background_color: 0,1,0,1
+        canvas.before:
+            Color:
+                rgba: 0, 1, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "up"
+    Button:
+        text: "Next"
+        size_hint: .1,.05
+        pos_hint: {"x":0.7,"y":0.025}
+        background_color: 0,1,0,1
+        canvas.before:
+            Color:
+                rgba: 0, 1, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        on_release:
+            app.root.current = "guide4"
+            root.manager.transition.direction = "left"
+<Guide4>:
+    name:"guide4"
+    Image:
+        source: '3guide.jpeg'
+        pos_hint: {"center_x":0.5,"center_y":0.5}
+        size_hint: 0.8,0.8
+        allow_stretch: True
+        keep_ratio: False    
+    Button:
+        text: "Skip"
+        size_hint: .1,.05
+        pos_hint: {"x":0.2,"y":0.025}
+        background_color: 0,1,0,1
+        canvas.before:
+            Color:
+                rgba: 0, 1, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "up"
+    Button:
+        text: "Next"
+        size_hint: .1,.05
+        pos_hint: {"x":0.7,"y":0.025}
+        background_color: 0,1,0,1
+        canvas.before:
+            Color:
+                rgba: 0, 1, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        on_release:
+            app.root.current = "guide5"
+            root.manager.transition.direction = "left"
+<Guide5>:
+    name:"guide5"
+    Image:
+        source: 'LastGuide.jpeg'
+        pos_hint: {"center_x":0.5,"center_y":0.5}
+        size_hint: 0.8,0.8
+        allow_stretch: True
+        keep_ratio: False    
+    Button:
+        text: "Skip"
+        size_hint: .1,.05
+        pos_hint: {"x":0.2,"y":0.025}
+        background_color: 0,1,0,1
+        canvas.before:
+            Color:
+                rgba: 0, 1, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "up"
+    Button:
+        text: "Next"
+        size_hint: .1,.05
+        pos_hint: {"x":0.7,"y":0.025}
+        background_color: 0,1,0,1
+        canvas.before:
+            Color:
+                rgba: 0, 1, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        on_release:
+            app.root.current = "guide6"
+            root.manager.transition.direction = "left"
+<Guide6>:
+    name:"guide6"
+    Image:
+        source: 'xyz.jpeg'
+        pos_hint: {"center_x":0.5,"center_y":0.5}
+        size_hint: 0.8,0.8
+        allow_stretch: True
+        keep_ratio: False    
+    Button:
+        text: "Skip"
+        size_hint: .1,.05
+        pos_hint: {"x":0.2,"y":0.025}
+        background_color: 0,1,0,1
+        canvas.before:
+            Color:
+                rgba: 0, 1, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "up"
+    Button:
+        text: "Finish"
+        size_hint: .1,.05
+        pos_hint: {"x":0.7,"y":0.025}
+        background_color: 0,1,0,1
+        canvas.before:
+            Color:
+                rgba: 0, 1, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "up"
+<Guide>:
+    name:"guide"
+    Label:
+        text: "Guide"
+        size_hint: 0.5,0.1
+        pos_hint: {"center_x": .5, "top": 1}
+    Button:
+        text: "Skip"
+        size_hint: .1,.05
+        pos_hint: {"x":0.8,"y":0.025}
+        background_color: 0,1,0,1
+        canvas.before:
+            Color:
+                rgba: 0, 1, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "down"
+    #Image: #TopRight
+    
+    Image:
+        
+        source: 'yoho.jpeg'
+        pos_hint: {"center_x":0.71,"y":0.51}
+        size_hint: 0.4,0.4
+        allow_stretch: True
+        keep_ratio: False
+    Image: #BottomLeft
+        source: '1.jpeg'
+        pos_hint: {"center_x":0.3,"y":0.1}
+        size_hint: 0.4,0.4
+        allow_stretch: True
+        keep_ratio: False
+    Image: #TopLeft
+        source: '1.jpeg'
+        pos_hint: {"center_x":0.3,"y":0.51}
+        size_hint: 0.4,0.4
+        allow_stretch: True
+        keep_ratio: False
+    Image: #BottomRight
+        source: '1.jpeg'
+        pos_hint: {"center_x":0.71,"y":0.1}
+        size_hint: 0.4,0.4
+        allow_stretch: True
+        keep_ratio: False
+
+<Feed>:
+    name:"feed"
+    
+            
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_y: 1
+        ScrollView:
+            GridLayout:
+                cols: 1
+                spacing: 10
+                padding: 10
+                size_hint_y: None
+                height: self.minimum_height
+                Label:
+                    text: "Heavy traffic reported on NH22 (Chandigarh-Shimla Highway). Consider alternate routes."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Roadwork causing delays on SH10 (Manali-Rohtang Road). Expect minor delays."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Accident near NH44 (Pathankot-Jammu Highway). Traffic slowdowns expected."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Traffic lights not functioning on SH8 (Kullu-Manali Road). Exercise caution."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Road closure on NH5 (Shimla-Kufri Road) due to maintenance. Follow diversion signs."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Smooth traffic flow on SH7 (Mandi-Kullu Road). Enjoy your drive!"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (117/255,204/255,116/255,1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Watch for loose gravel on SH12 (Kangra-Dharamshala Road). Drive at reduced speeds."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Use your seat belt on NH3 (Chandigarh-Manali Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Fuel station at the next town (Nahan) temporarily closed."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Scheduled road maintenance on SH9 (Mandi-Rewalsar Road) tomorrow."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Foggy conditions near NH205 (Kullu-Shimla Road). Use fog lights."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Signal at the T-junction of SH15 and SH14 back in operation."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (117/255,204/255,116/255,1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Yield to pedestrians at Zebra Crossings, especially on NH21 (Mandi-Kasol Highway)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "No overtaking in marked no-overtake zones on NH44 (Chandigarh-Delhi Highway)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Roadside assistance available on NH70 (Mandi-Sundar Nagar Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (117/255,204/255,116/255,1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Carpooling reduces traffic and pollution. Consider sharing rides on SH6 (Solan-Kasauli Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (117/255,204/255,116/255,1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Beware of falling rocks on SH13 (Shimla-Chail Road). Drive carefully."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Check your vehicle's brakes and lights before starting your trip on any Himachal Pradesh road."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Green light for a smooth journey! Enjoy the scenic drive."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (117/255,204/255,116/255,1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Light rain causing slippery roads on NH154 (Dharamshala-Kangra Road). Drive cautiously."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Avoid distractions while driving on SH11 (Shimla-Kufri Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Report any reckless driving to the local authorities on NH22 (Chandigarh-Shimla Highway)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Construction causing minor delays on SH5 (Mandi-Palampur Road). Plan extra travel time."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Keep your headlights on low beam at night on NH205 (Chandigarh-Manali Highway)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Stay within speed limits on SH8 (Kullu-Manali Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Maintain a safe distance from heavy vehicles on NH44 (Pathankot-Jammu Highway)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Slow down near schools and residential areas on SH15 (Shimla-Narkanda Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Use turn signals to indicate your intentions on SH7 (Mandi-Kullu Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Avoid using your mobile phone while driving on NH5 (Shimla-Rampur Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Keep the emergency lane clear on NH3 (Chandigarh-Manali Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Use the rightmost lane for slow-moving traffic on SH12 (Kangra-Dharamshala Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Follow the lane markings on NH21 (Mandi-Kasol Highway)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Be patient at toll booths on SH6 (Solan-Kasauli Road). Delays are inevitable."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Report any road hazards to the local authorities on SH13 (Shimla-Chail Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Ensure your vehicle's headlights are on during adverse weather on NH154 (Dharamshala-Kangra Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Ensure all passengers are wearing seat belts on SH11 (Shimla-Kufri Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Watch for animals crossing the road on NH22 (Chandigarh-Shimla Highway)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Respect the speed limits posted on SH5 (Mandi-Palampur Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Don't drink and drive on NH205 (Chandigarh-Manali Highway)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Obey traffic signs and signals on SH8 (Kullu-Manali Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Take breaks during long journeys on NH44 (Pathankot-Jammu Highway)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (117/255,204/255,116/255,1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Adhere to one-way traffic rules on SH7 (Mandi-Kullu Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "If you're feeling drowsy, pull over safely on NH5 (Shimla-Rampur Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Avoid sudden lane changes on SH15 (Shimla-Narkanda Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Ensure your vehicle's brakes are functioning properly on SH12 (Kangra-Dharamshala Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Be cautious of blind spots, especially when changing lanes on NH21 (Mandi-Kasol Highway)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Be courteous to fellow drivers on SH6 (Solan-Kasauli Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (117/255,204/255,116/255,1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Observe and follow all road signs and markings on SH13 (Shimla-Chail Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Label:
+                    text: "Don't tailgate on NH154 (Dharamshala-Kangra Road)."
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    valign: 'top'
+                    color: 0,0,0,1
+                    background_color: (1, 0.3, 0.4, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos                   
+    RoundedButton2:
+        text: "main menu"
+        color: 0,0,0,1
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "left"
+        size_hint: .2,.1
+        pos_hint: {"center_x":.85,"y":.07}
+<RoundedButton2@Button>:
+    background_color: (1,0,0,0)
+    canvas.before:
+        Color:
+            rgba: (255/255,235/255,0,1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [50]
+<Account>:
+    name: "acc"
+    Button:
+        text: 'Go Back to Main Menu >'
+        #background_normal: ''
+        #background_color: (0,1,0,1)
+        font_size: 35
+        #color: 0,0,0,1
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "left"
+        size_hint: .4,.16
+        pos_hint: {"x":0,"top":1}
+
+    Button:
+        text:"Account Details"
+        size_hint: 1,.2
+        font_size: 35
+        #color: 0,0,0,1
+        pos_hint: {"x":0,"top":0.83}
+        #background_normal: ''
+        #background_color: (0,1,1,1)
+        on_release:
+            app.root.current = "account"
+            root.manager.transition.direction = "down"
+    Button:
+        text:"Settings"
+        size_hint: 1,.2
+        font_size: 35
+        #color: 0,0,0,1
+        pos_hint: {"x":0,"top":0.62}
+        #background_normal: ''
+        #background_color: (0,1,1,1)
+        on_release:
+            app.root.current = "setting"
+            root.manager.transition.direction = "down"
+    Button:
+        text: "Terms and Conditions"
+        size_hint: 1,.2
+        font_size: 35
+        #color: 0,0,0,1
+        pos_hint: {"x":0,"top":0.41}
+        #background_normal: ''
+        #background_color: (0,1,1,1)
+        on_release:
+            app.root.current = "terms"
+            root.manager.transition.direction = "left"
+    Button:
+        text: "Sign Out"
+        size_hint: 1,.2
+        pos_hint: {"x":0,"top":0.2}
+        font_size: 35
+        background_normal: ''
+        background_color: 1,0,0,1
+        on_release:
+            app.root.current = "welcome"
+            root.manager.transition.direction = "up"
+    Image: 
+        source: "acc menu.jpeg"
+        size: 1,1
+        allow_stretch: True
+        keep_ratio: False
+
+<Notifications>:
+    name: "Notification"
+    Image:
+        source: 'red.png'
+        pos_hint: {"x":0,"top":1}
+        size_hint: 1,0.46
+        allow_stretch: True
+        keep_ratio: False
+    RelativeLayout:
+        Label:
+            text: "Avoid taking NH11, Snowfall reported"
+            font_size: 30
+            size_hint: 1,.2
+            color: 0,0,0,1
+            pos_hint: {"center_x": .5, "top": .78}
+            canvas.before:
+                Color:
+                    rgba: 1,1,1,1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            text: "Accident reported on SH19, 2 out of 4 lanes blocked "
+            size_hint: 1, 0.2
+            pos_hint: {"top":1}
+            font_size: 30
+            color: 0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: (1,1,1,1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        Label:
+            text: "Land Slide on NH12, avoid taking the route "
+            size_hint: 1, 0.2
+            pos_hint: {"top":.56}
+            font_size:30
+            color: 0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: (1,1,1,1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+        
+                    
+    Button:
+        text: 'Go Back to Main Menu'
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "right"
+
+        size_hint: .3,.1
+        pos_hint: {"center_x":.5,"y":.15}
+<Support>:
+    name: "support"
+    Label:
+        text: "Sorry!!!"
+        font_size: 50
+        pos_hint: {"center_x": .5, "center_y": .8}
+    Label:
+        text: "Under Construction"
+        font_size: 50
+        pos_hint: {"center_x": .5, "center_y": .65}
+    Button:
+        text: 'Go Back to Main Menu'
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "right"
+        size_hint: .3,.1
+        pos_hint: {"center_x":.5,"y":.3}
+<SOS>:
+    name: "SOS"
+    background_normal: ''
+    background_color: 1,1,1,1
+    Image:
+        source: 'red.png'
+        pos_hint: {"x":0,"y":0}
+        size_hint: 1,0.2
+        allow_stretch: True
+        keep_ratio: False
+            
+    Label:  #1
+        size_hint: 1,.14
+        pos_hint: {"center_x": .5,"top":.9996}
+        text: "SnowFall"
+        color: 0,0,0,1
+        background_color: (1,1,1,1)
+        canvas.before:
+            Color:
+                rgba: self.background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+    Label:  #2
+        size_hint: 1,.14
+        pos_hint: {"center_x": .5,"top":.858}
+        color: 0,0,0,1
+        text: "Machine Breakdown"
+        background_color: (1,1,1,1)
+        canvas.before:
+            Color:
+                rgba: self.background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+    Label:  #3
+        size_hint: 1,.14
+        pos_hint: {"center_x": .5,"top":.7164}
+        color: 0,0,0,1
+        text: "Wildlife encroachment"
+        background_color: (1,1,1,1)
+        canvas.before:
+            Color:
+                rgba: self.background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+    Label:  #4
+        size_hint: 1,.14
+        pos_hint: {"center_x": .5,"top":.5748}
+        color: 0,0,0,1
+        text: "Land Slides"
+        background_color: (1,1,1,1)
+        canvas.before:
+            Color:
+                rgba: self.background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+    Label:  #5
+        size_hint: 1,.14
+        pos_hint: {"center_x": .5,"top":.4332}
+        color: 0,0,0,1
+        text: "River Overflow"
+        background_color: (1,1,1,1)
+        canvas.before:
+            Color:
+                rgba: self.background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+    Label:  #6
+        size_hint: 1,.14
+        pos_hint: {"center_x": .5,"top":.291}
+        color: 0,0,0,1
+        text: "Accident"
+        background_color: (1,1,1,1)
+        canvas.before:
+            Color:
+                rgba: self.background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+    
+    Button:
+        text: 'Go Back to Main Menu'
+        background_color: 0,0,0,1
+        
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "down"
+        size_hint: .3,.1
+        pos_hint: {"center_x":.5,"top":.1}
+
+<MainScreen>:
+    name:"main"
+    
+    Image:
+        source: 'MAP.jpeg'
+        
+        size_hint: 1,1
+        allow_stretch: True
+        keep_ratio: False
+            
+    RelativeLayout:
+        Button:
+            pos_hint: {"x":0,"top":1}
+            text: "Acc"
+            size_hint: .2,.15
+            font_size: 35
+            on_release:
+                app.root.current = "acc"
+                root.manager.transition.direction = "right"       
+            background_normal: ''    
+            background_color: 0,0,0,1
+        Image:
+            source: "ACC2.jpeg"
+            size_hint: .2,.15
+            pos_hint: {"x":0, "top": 1}
+            allow_stretch: True
+            keep_ratio: False
+        Button:
+            pos_hint: {"right":1,"top":1}
+            text: "Notifications"
+            size_hint: .2,.15
+            font_size: 35
+            on_release:
+                app.root.current = "notifs"
+                root.manager.transition.direction = "left"
+            background_normal: ''    
+            background_color: 254/255,44/255,84/255,1
+        Image:
+            source: 'BELL.jpeg'
+            pos_hint: {"right":1,"top":1}
+            size_hint: .2,.15
+            allow_stretch: True
+            keep_ratio: False
+        Button:
+            pos_hint: {"x":0,"bottom":1}
+            text: "Feed"
+            size_hint: .2,.15
+            font_size: 35
+            on_release:
+                app.root.current = "feed"
+                root.manager.transition.direction = "right"
+            background_normal: ''    
+            background_color: 254/255,44/255,84/255,1
+        Image:
+            source: 'CHAT.jpeg'
+            pos_hint: {"x":0,"bottom":1}
+            size_hint: .2,.15
+            allow_stretch: True
+            keep_ratio: False
+        Button:
+            pos_hint: {"right":1,"bottom":1}
+            text: "Support"
+            size_hint: .2,.15
+            font_size: 35
+            on_release:
+                app.root.current = "support"
+                root.manager.transition.direction = "left"
+            background_normal: ''    
+            background_color: 206/255,169/255,104/255,1
+        Image:
+            source: 'SUPP.jpeg'
+            pos_hint: {"right":1,"bottom":1}
+            size_hint: .2,0.15
+            allow_stretch: True
+            keep_ratio: False
+        Button:
+            pos_hint: {"center_x":.5}
+            size_hint:.2,.15
+            #text: "SOS"
+            font_size: 35
+            on_release:
+                app.root.current = "SOS"
+                root.manager.transition.direction = "up"
+        Image:
+            source: 'RED2.jpeg'
+            pos_hint: {"center_x": 0.5,"top":1}
+            size_hint: .6,0.15
+            allow_stretch: True
+            keep_ratio: False
+        Image:
+            source: 'log.jpeg'
+            pos_hint: {"center_x": 0.5,"top":1.03}
+            size_hint: .25,0.18
+            allow_stretch: True
+            keep_ratio: False
+        Image:
+            source: 'SOS2.jpeg'
+            pos_hint: {"center_x":0.5,}
+            size_hint: .2,0.15
+            allow_stretch: True
+            keep_ratio: False
+        
+<RoundedButton@Button>:
+    background_color: (1,0,0,0)
+    canvas.before:
+        Color:
+            rgba: (250/255,0,0,1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [50]
+
+<Welcome>:
+    name: "welcome"
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "Rename1.jpeg"
+    Button:
+        background_color: 0,0,0,0
+        canvas.before:
+            Color:
+                rgba: 0, 1, 0, 0
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        on_release:
+            app.root.current = "login"
+            root.manager.transition.direction = "down"
+""")
+
+class Support(Screen):
+    pass
+
+
+class DarkModeApp(App):
+    dark_mode = BooleanProperty(False)
+    def toggle_dark_mode(self, active):
+        self.dark_mode = active
+
+
+class Settings(Screen):
+    pass
+
+
+class Terms(Screen):
+    pass
+
+
+class Welcome(Screen):
+    pass
+
+
+class Feed(Screen):
+    pass
+
+
+class AccountDet(Screen):
+    pass
+
+
+class MainScreen(Screen):
+    pass
+
+
+class Notifications(Screen):
+    pass
+
+
+class Account(Screen):
+    pass
+
+
+class SOS(Screen):
+    def active_func(self,boolvalue):
+        if boolvalue:
+            self.ids.HolaAmigo.color = (0,1,1,1)
+    pass
+
+
+class Guide(Screen):
+    pass
+
+
+class Guide1(Screen):
+    pass
+
+
+class Guide2(Screen):
+    pass
+
+
+class Guide3(Screen):
+    pass
+
+
+class Guide4(Screen):
+    pass
+
+
+class Login(Screen):
+    pass
+
+
+class Guide5(Screen):
+    pass
+
+
+class Guide6(Screen):
+    pass
+
+
+
+screen_manager = ScreenManager()
+
+# Add the screens to the manager and then supply a name
+# that is used to switch screens
+screen_manager.add_widget(Welcome(name ="welcome"))
+screen_manager.add_widget(Login(name ="login"))
+screen_manager.add_widget(Guide1(name ="guide1"))
+screen_manager.add_widget(Guide2(name ="guide2"))
+screen_manager.add_widget(Guide3(name ="guide3"))
+screen_manager.add_widget(Guide4(name ="guide4"))
+screen_manager.add_widget(Guide5(name ="guide5"))
+screen_manager.add_widget(Guide6(name ="guide6"))
+screen_manager.add_widget(MainScreen(name ="main"))
+screen_manager.add_widget(Feed(name ="feed"))
+screen_manager.add_widget(Notifications(name ="notifs"))
+screen_manager.add_widget(Account(name ="acc"))
+screen_manager.add_widget(Support(name ="support"))
+screen_manager.add_widget(SOS(name ="SOS"))
+screen_manager.add_widget(Terms(name ="terms"))
+screen_manager.add_widget(AccountDet(name ="account"))
+screen_manager.add_widget(Settings(name="setting"))
+
+
+
+#kv = Builder.load_file("TheLab.kv")
+
+
+class MyApp(App):
+    def build(self):
+        Window.size = (700,840)
+        layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
+        layout.bind(minimum_height=layout.setter('height'))
+        root = ScrollView(size_hint=(1, None), size=(Window.width, Window.height))
+        root.add_widget(layout)
+        return screen_manager
+
+
+class RelativeLayout(RelativeLayout):
+    pass
+
+
+class Scroll(ScrollView):
+    pass
+
+
+class Anchorlayout(AnchorLayout):
+    pass
+
+
+class Gridlayout(GridLayout):
+    pass
+
+
+class BoxLayout(BoxLayout):
+    # def __init__(self, **kwargs):
+    pass
+    # super().__init__(**kwargs)
+    # self.orientation="vertical"
+    # b1= Button(text="A")
+    # b2= Button(text="B")
+    # self.add_widget(b2)
+    # self.add_widget(b1)
+
+
+class MainWidget(Widget):
+    pass
+
+
+class FloatLayout(FloatLayout):
+    pass
+
+
+class WidgetsExample(GridLayout):
+    my_text = StringProperty()
+
+
+MyApp().run()
